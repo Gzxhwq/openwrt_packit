@@ -72,6 +72,9 @@ BACKUP_LIST='./etc/AdGuardHome.yaml \
 ./etc/urandom.seed \
 ./etc/v2raya/ \
 ./etc/verysync/ \
+./etc/keepalived/ \
+./etc/conntrackd/ \
+./etc/bird.conf \
 ./root/.ssh/'
 
 if dmesg | grep 'meson' >/dev/null 2>&1; then
