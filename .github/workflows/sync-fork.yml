@@ -2,13 +2,17 @@ name: Sync Fork
 
 on:
   schedule:
-    - cron: '*/30 * * * *' # every 30 minutes
+    - cron: '0 */1 * * *' # every 30 minutes
   workflow_dispatch: # on button click
 
 jobs:
   sync:
 
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
 
     steps:
       - uses: tgymnich/fork-sync@v1.9
@@ -19,3 +23,11 @@ jobs:
           base: master
           head: master
           ignore_fail: false
+
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 1
+          keep_minimum_runs: 0
