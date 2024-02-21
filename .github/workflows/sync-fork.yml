@@ -23,7 +23,7 @@ jobs:
           owner: unifreq
           base: master
           head: master
-          merge_method: squash
+          merge_method: rebase
           ignore_fail: false
 
       - name: Delete workflow runs
