@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: tgymnich/fork-sync@v1.3
         with:
-          token: ${{ secrets.SYNC_FORK_PAT }}
+          personal_token: ${{ secrets.SYNC_FORK_PAT }}
           auto_approve: true
           base: master
           head: master
