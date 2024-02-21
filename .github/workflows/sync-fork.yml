@@ -20,6 +20,7 @@ jobs:
           personal_token: ${{ secrets.SYNC_FORK_PAT }}
           github_token: ${{ github.token }}
           auto_approve: true
+          owner: unifreq
           base: master
           head: master
           merge_method: squash
