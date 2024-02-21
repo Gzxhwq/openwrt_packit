@@ -19,9 +19,9 @@ jobs:
         with:
           token: ${{ secrets.SYNC_FORK_PAT }}
           auto_approve: true
-          owner: unifreq
           base: master
           head: master
+          merge_method: squash
           ignore_fail: false
 
       - name: Delete workflow runs
