@@ -15,7 +15,7 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: tgymnich/fork-sync@v1.9
+      - uses: tgymnich/fork-sync@v1.3
         with:
           token: ${{ secrets.SYNC_FORK_PAT }}
           auto_approve: true
