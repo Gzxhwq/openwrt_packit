@@ -18,6 +18,7 @@ jobs:
       - uses: tgymnich/fork-sync@v1.3
         with:
           personal_token: ${{ secrets.SYNC_FORK_PAT }}
+          github_token: ${{ github.token }}
           auto_approve: true
           base: master
           head: master
