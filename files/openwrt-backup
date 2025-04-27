@@ -86,7 +86,7 @@ else
 ./etc/conntrackd/ \
 ./etc/bird.conf \
 ./etc/sing-box/config.json \
-./etc/ddns-go/config.yaml \
+./etc/ddns-go/ \
 ./etc/frp/ \
 ./root/.ssh/'
 fi
