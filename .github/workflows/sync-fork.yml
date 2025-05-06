@@ -15,7 +15,7 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: tgymnich/fork-sync@v1.3
+      - uses: tgymnich/fork-sync@v1.9
         with:
           personal_token: ${{ secrets.SYNC_FORK_PAT }}
           github_token: ${{ github.token }}
