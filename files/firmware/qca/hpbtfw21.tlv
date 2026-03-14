@@ -1,0 +1,1 @@
+QCA2066/rampatch_usb_00130201.bin

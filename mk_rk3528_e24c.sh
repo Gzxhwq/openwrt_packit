@@ -17,11 +17,11 @@ SOC=rk3528
 BOARD=e24c
 SUBVER=$1
 
-#if [ -n "$RK35XX_KERNEL_VERSION" ];then
-    ## lock the kernel version
-    #KERNEL_VERSION=$RK35XX_KERNEL_VERSION
-    #LOCK_KERNEL=${KERNEL_VERSION}
-#fi
+if [ -n "$RK35XX_KERNEL_VERSION" ];then
+    # lock the kernel version
+    KERNEL_VERSION=$RK35XX_KERNEL_VERSION
+    LOCK_KERNEL=${KERNEL_VERSION}
+fi
 
 # Kernel image sources
 ###################################################################
@@ -127,8 +127,8 @@ RC_BUTTON_HOME="${PWD}/files/rk3528/e24c/rc.button"
 check_depends
 
 SKIP_MB=16
-BOOT_MB=256
-ROOTFS_MB=960
+BOOT_MB=512
+ROOTFS_MB=2048
 SIZE=$((SKIP_MB + BOOT_MB + ROOTFS_MB + 1))
 create_image "$TGT_IMG" "$SIZE"
 create_partition "$TGT_DEV" "gpt" "$SKIP_MB" "$BOOT_MB" "ext4" "0" "-1" "btrfs"
