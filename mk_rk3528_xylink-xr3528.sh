@@ -17,17 +17,20 @@ SOC=rk3528
 BOARD=xylink-xr3528
 SUBVER=$1
 
-if [ -n "$RK35XX_KERNEL_VERSION" ];then
-    # lock the kernel version
-    KERNEL_VERSION=$RK35XX_KERNEL_VERSION
-    LOCK_KERNEL=${KERNEL_VERSION}
+# suppert mainline kernel >= 6.18.44-flippy-95+ & bsp kernel >= 6.1.141-rk35xx-flippy-2608a
+if [ "$SUBVER" == "bsp" ];then
+  if [ -n "$RK35XX_KERNEL_VERSION" ];then
+      # lock the kernel version
+      KERNEL_VERSION=$RK35XX_KERNEL_VERSION
+      LOCK_KERNEL=${KERNEL_VERSION}
+      subver="-$SUBVER"
+  fi
 fi
-KERNEL_VERSION="6.1.141-rk35xx-flippy-2607b"
 
 # Kernel image sources
 ###################################################################
 KERNEL_TAGS="rk35xx"
-KERNEL_BRANCHES="bsp:rk35xx:>=:6.1 mainline:all:>=:6.12"
+KERNEL_BRANCHES="bsp:rk35xx:>=:6.1 mainline:all:>=:6.18"
 MODULES_TGZ=${KERNEL_PKG_HOME}/modules-${KERNEL_VERSION}.tar.gz
 check_file ${MODULES_TGZ}
 BOOT_TGZ=${KERNEL_PKG_HOME}/boot-${KERNEL_VERSION}.tar.gz
@@ -42,7 +45,7 @@ check_file ${OPWRT_ROOTFS_GZ}
 echo "Use $OPWRT_ROOTFS_GZ as openwrt rootfs!"
 
 # Target Image
-TGT_IMG="${WORK_DIR}/openwrt_${SOC}_${BOARD}_${OPENWRT_VER}_k${KERNEL_VERSION}${SUBVER}.img"
+TGT_IMG="${WORK_DIR}/openwrt_${SOC}_${BOARD}_${OPENWRT_VER}_k${KERNEL_VERSION}${subver}.img"
 
 # patches、scripts
 ####################################################################
@@ -100,7 +103,7 @@ DOCKER_README="${PWD}/files/DockerReadme.pdf"
 
 # 20210704 add
 SYSINFO_SCRIPT="${PWD}/files/30-sysinfo.sh"
-FORCE_REBOOT="${PWD}/files/rk3528/reboot"
+FORCE_REBOOT="${PWD}/files/rk3528/xylink-xr3528/reboot"
 
 # 20210923 add
 OPENWRT_KERNEL="${PWD}/files/openwrt-kernel"
